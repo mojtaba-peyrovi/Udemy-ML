@@ -1,0 +1,34 @@
+machine learning intro--------------------------------
+the most famous package for machine learning is called Scikit Learn.
+in order to import a specific model:   "from sklearn.family import model" e.g. "from sklearn..linear_model import LinearRegression"
+for spliting data to training/test:  ==> "from sklearn.cross_validation import train_test_split
+first we initialize the model buy saying(estimator):  model = LinearRegression(parameters)   ==> then we will use the train_test_split method to have our x,y training and test data. then we say: model.fit(x_train,y_train)
+in this tutorial::   x = model features  y=labels
+predict() method ==> predictions = model.predict(x_test)
+
+Linear Regression -----------------------------------
+part1: the first thing after importing datasets is to get the overal info about the dataset by using this command:   df.info()
+second step is the get the general statistical info about the dataframe by this command:
+df.describe()
+df.columns ==> lists the column names
+we can use sns.heatmap to see the matrix of numerical columns. ==> sns.heatmap(df.corr())
+(df.corr() will generate the matrix)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=101):   this command will alocate x ,y for test and training data. test size: is the percentage of data that will be used for testing. \
+intercept: the expected mean value of y when all X=0.
+in order to have this we ay: print(lm.intercept_)
+coefficient or Relative Standard Dviation (RSD) as a percentage is the ratio of the standard deviation (STD) to the mean.(absolute value)
+in order to have it for each feature, we say; df.coef_
+coef means in order to have 1 unit increase in y, you will have to have coeff amount of increase in the feature. e.g. if income coeff = 21 then in order to have 1 unit increase in home price we will have to have 21 units increase in income.
+
+part2: 
+for predicting the y values based on test values:  
+lm = LinearRegression()
+predictions = lm.predict(X_test)
+====Residual (e) = Observed value - Predicted value 
+in order to see the residuals we can use matplotlib or pandas or seaborn to compare the real values with predictions. also we can make a histogram of the residuals. if its normally distributed, it is a good sign,.
+==>> REGRESSION EVALUATION METRICS  <<== showed in A photo called metrics.jpg
+1) MAE: Mean Absolute Error: its easy, takes the difference for each pair of values, takes the minimum of it without negative values.
+2) MSE: Mean Square Error: it takes the average of sqare errors. its more useful in real world because it punishes the bigger errors by squaring them.
+3) RMSE: Root Mean Square Errors: it will take the second root of the MSE.
+the best prediction :  minimizing all 3 metrics.
+metrics.explained_variance_score ==> will explain how well the predictions fit to the real data. the more its closer to 1 it will be more accurate. 

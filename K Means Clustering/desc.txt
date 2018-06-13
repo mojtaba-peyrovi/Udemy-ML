@@ -1,0 +1,6 @@
+K-means algorithm ---------------------
+this algorithm is for unsupervised data with no labels. it clusters them.
+its good for clsutering similar documents, market segments, etc.
+first we define K clusters. then we start assigning values to clusters randomly. then we find the centroid of each cluster. then we re assign values based on the closest distance to the each one's associated centroid. then we re calculate the centroid and again re assign the values. we keep doing this unitil we get to the optimum point.
+in order to find K value we can use elbow method. first we calculate SSE (Sum of the Squared Errors)  errror means the distance between each data point with the centroid.
+sklearn has a nice method called make_blob()  that generates artificial data. we need to say from sklearn.datasets import make_blob

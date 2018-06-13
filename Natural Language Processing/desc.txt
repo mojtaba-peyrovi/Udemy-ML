@@ -1,0 +1,29 @@
+>>>>>>Natural Language Processing: (NLP)
+nltk.download_shell()==>  imports an interactive shell inside Jupyter for downloading different example datasets.
+string.rstrip() ==> can separate strings from each other by whitespaces or any character we pass through. e.g. rstrip(+)
+collection of text is called Corpus.
+\t : means tab separation; ==> 'ham\tGo until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat...'  ( \t after ham)
+we can easily use pandas.read_csv() and pass sep='\t'  so that it puts all messages in a table.
+we can use describe() on a groupby() to describe each group separately. 
+string library of pandas has a method to remove punctuations: e,g,
+mess = 'Sample message! notice: it has punctuation.'
+nopunc = [c for c in mess if c not in string.punctuation]  ==> this nopunc is a vector(1d matrix) of cahracters in mess excluding punctuations.
+nopunc = ''.join(nopunc) ==> will return the characters back to make the string without punctuations.
+-- remove stop words:  we can use a library in nltk called stopwords ==> stopwords.words('english')  shows the list of all stopwords in english.
+clean_mess = [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]  ==> removes all stopwords.
+++ vectorization:
+1- counting how many times each word has been repeated. (term frequency)
+2- weigh of the counts. more frequent words get less weight (inverse document frequency)
+3- normalize the strings to unit length to abstract from the original text length (L2 norm)
+Sparse Matrix: a matrix that has most of the values as zeros.  oppsite of it is  Dense matrix. 
+CountVectorizer() is a method from sklearn that makes the sparse matrix with rows as all vocabularies in the whole dataset, and columns as different messages. 
+the values say how many times each word has repeated in each message.
+.nnz ==> shows non-zero values.
+Tfidf: (term frequency inverse document frequency) its a library in sklearn that shows the frequency of each vocabulary. 
+we can use these frequencies as the weight of each word. 
+# in this example we didnt split data into train/test but in rel world we need to do so#
+in order to do this we need to split the data into test/train datasets and start doing all of the steps on the train dataset; but instead of that we can use pipeline() from
+sklearn and it does all of the work for us, we just need to pass the steps into the pipeline and fit the model to it.  (  pipeline().fit()  )
+
+
+

@@ -1,0 +1,63 @@
+to delete a column by index:           train = train.drop(train.columns[12], axis=1,inplace=True)
+to delete a column by name:           train.drop('Cabin',axis=1,inplace=True)
+to drop all empty reccords:             train.dropna(inplace=True)
+
+machine learning intro--------------------------------
+the most famous package for machine learning is called Scikit Learn.
+in order to import a specific model:   "from sklearn.family import model" e.g. "from sklearn..linear_model import LinearRegression"
+for spliting data to training/test:  ==> "from sklearn.cross_validation import train_test_split
+first we initialize the model buy saying(estimator):  model = LinearRegression(parameters)   ==> then we will use the train_test_split method to have our x,y training and test data. then we say: model.fit(x_train,y_train)
+in this tutorial::   x = model features  y=labels
+predict() method ==> predictions = model.predict(x_test)
+
+
+logistic Regression -----------------------------------
+part1- data download, import, visualization and exploratory analysis
+Ham email : means all good email. they use it against spam email.
+logistic regression is used for solving clustering issues. but this is used only for binary classifications that there are only 2 classes. 
+sigmoid function: 1/1-e^-X  makes the probabiliy fit between 0-1
+Accuracy of a model:  (TP/TN)/total
+misclassification:  (FP+FN)/total       FP:Error type 1  ====>>> FN; Error type 2
+--------------------------------------------------------
+part2: cleaned up the dataset by inputing missing data, deleting useless columns and dealt with categorical columns,
+df.isnull( ) ==> shows where we have missing data on the dataframe. (True if is null, False if is not null)
+sns.heatmap(train.isnull(),yticklabels=False,cbar=False,cmap='viridis')  ==> this shows a heatmap of what we are missing so much, if the data are too much missing in a column we can drop the column entirely.
+doing some data visualization when we get a new dataset. it can help understand what's going on. countplot on the target data is useful. then we can have hue of sex, class, etc. to see who survived or didnt based on different catrgories.
+dropna()===> will drop empty cells.  e.g. train['Age'].dropna()
+plt.rcParams["patch.force_edgecolor"] = True  ===> .will turn on outlines for seaborn charts.
+cufflinks is a very useful tool to make interactive charts. like this:
+import cufflinks as cf
+cf.go_offline()
+train['Fare'].iplot(kind='hist')
+IMPUTATION: sometimes for missing data we can fill them with average. or we can make another model to guess them. for this example we made a prediction based on class. it showed wealthier poeple from class 1 are older. 
+we ddefined this function:
+def impute_age(cols):
+    Age = cols[0]
+    Pclass = cols[1]
+    if pd.isnull(Age):
+        if Pclass == 1: 
+            return 37
+        elif Pclass == 2:
+            return 29
+        else:
+            return 24
+    else:
+        return Age
+
+it takes the dataframe ages and pclass, for different conditions of class it defines a specific age. 
+train['Age'] = train[['Age','Pclass']].apply(impute_age,axis=1)  ==> then we apply that function to our dataframe. this way python will input empty age cells with proper data.
+Creating a Dummy Variable:  for converting categorical data into numeric in order for machine learning algorythms to understand it, we need to make 0-1 columns for categorical data(in this example Sex and Embarked.
+in order to make dummy variables:   ====>>>>  sex = pd.get_dummies(train['Sex'],drop_first=True)
+train = pd.concat([train,sex,embark],axis=1)  ==> concat dummy veriables sex and embark to the train dataframe
+-------------------------------------------------
+part3- trainging model and implementing the regression model to classify
+from sklearn.cross_validation import train_test_split
+
+has been changed to :
+
+from sklearn.model_selection import train_test_split
+to import logistic regression we do the same way as we did for linear regression: 
+from sklearn.linear_model import LogisticRegression
+MOST OF THE WORK AS DATA ANALYSTS WOULD BE FOCUSED ON CLEANING DATASETS, THE SOPHISTICATED MODELING METHODS ARE ALREADY INCLUDED IN SOFTWARES.
+to see the metrics: from sklearn.metrics import classification_report
+

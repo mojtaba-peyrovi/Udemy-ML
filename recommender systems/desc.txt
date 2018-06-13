@@ -1,0 +1,13 @@
+Recommender system:
+2 different types: 
+ 1) content-based : based on similarity between items' attributes.   
+
+2)Collaborating Filtering (CF): based on the crowd interest. like Amazon offers us products based on others' choices popularity. 
+CF is more common. becuase gives better results and its easier to understand.
+two types of CF:
+- model based collaborative filtering
+- memory based collaborative filtering
+
+for reading .dat files we need to use pd.read_table()
+in order to left join values in a table with another values in the other table (exmaple: movie lens database replace item_id with movie_name from another table) we can use pd.merge(<first_table>,<second_table>, on= <the column name in this case item_id>)
+in the practice we used corrwith() that shows the correlation of one movie to other movies and sorted them and got the top correlated ones to that movie. for example if someone picks American Beauty, the algorithm will offer the most 10 correlated movies to it and returns the names.
