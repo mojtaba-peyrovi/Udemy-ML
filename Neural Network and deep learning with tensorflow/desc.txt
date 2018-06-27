@@ -1,0 +1,14 @@
+MNIST with Mul;ti-layer Perceptron:
+we are going to use the builtin tensorflow dataset called MNIST. 
+then we call the dataset mnist
+- mnist.train,images is an array of 55000-784 images for training. 
+- with matplotlib we can see the images which are the collection of pixel darknesses.
+- trainning epochs means the number of times the trainning will run.
+- 784 is the number of hand written letters.
+- hidden layers are the layers between start and end layers and the more we define hidden layers, 
+the training will be more accurate but it takes longer. 
+- after the end of the process there will be the cost function that tells us how off we are from the training
+data and then we can run the optimization function to minimize the cost(lost) fucntion. 
+-------------
+part2,3:
+mnist.train.next_batch(10) will pick 10 random samples from the train data. 
